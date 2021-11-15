@@ -1,0 +1,14 @@
+<div>
+    <mat-toolbar class='custom'>
+        <span class='element-center'><b>Crypto</b></span>
+        <span class='element-center'>
+         <form [formGroup]="fiatsForm">
+             <mat-form-field>
+                 <mat-select formControlName="base">
+                     <mat-option *ngFor="let currency of getFiatsSymbols()" [value]="currency">{{currency}}</mat-option>
+                 </mat-select>
+             </mat-form-field>
+         </form>
+        </span>
+    </mat-toolbar>
+</div>

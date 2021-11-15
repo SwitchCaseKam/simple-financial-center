@@ -1,0 +1,16 @@
+<mat-card class="crypto-info" (click)="showDetails()">
+    <img src="assets/crypto-icons/{{cryptoInfo.cryptoCode}}.png">
+    <mat-card-subtitle>{{cryptoInfo.cryptoName}}</mat-card-subtitle>
+    <mat-card-title>{{cryptoInfo.cryptoCode}}</mat-card-title>
+    <mat-card-content>
+        <p><b>{{cryptoInfo.exchangeRate}} {{cryptoInfo.fiatCode}}</b></p>
+        <mat-divider inset></mat-divider>
+        <p>bid: {{cryptoInfo.bidPrice}}</p>
+        <p>ask: {{cryptoInfo.askPrice}}</p>
+        <mat-divider inset></mat-divider>
+        <p>Last update: {{cryptoInfo.time}}</p>
+    </mat-card-content>
+
+
+</mat-card>
+

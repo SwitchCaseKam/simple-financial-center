@@ -1,0 +1,12 @@
+mat-grid-tile {
+    background: lightblue;
+  }
+
+
+  .element-center2 {
+      text-align: center;
+    /* margin: auto;
+    width: 50%; */
+    /* display: flex;
+    justify-content: center; */
+  }

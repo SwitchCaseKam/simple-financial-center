@@ -1,0 +1,13 @@
+.button-section {
+    border: 1px solid black;
+}
+
+.container {
+    width: 70%;
+    margin: 0 auto;
+    /* creates 20% margins on either side */
+  }
+
+  .mat-display-1 {
+      margin-bottom: 1rem;
+  }

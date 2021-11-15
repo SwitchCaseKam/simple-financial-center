@@ -1,0 +1,15 @@
+<div class='container'>
+    <app-header></app-header>
+    <br>
+    <div>
+        <div fxLayout="row wrap" fxLayoutAlign="space-around center" fxLayoutGap="10px grid">
+            <div class='element-center2' fxFlex="33%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let crypto of cryptosData">
+                <app-single-crypto-info  [cryptoInfo]="crypto"></app-single-crypto-info>
+            </div>        
+        </div>
+    </div>
+</div>
+
+
+<router-outlet></router-outlet>
+ 
