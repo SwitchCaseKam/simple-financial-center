@@ -8,7 +8,7 @@ import { Observable } from "rxjs";
 export class AuthHttpInterceptor implements HttpInterceptor {
 
     private apiHost = 'alpha-vantage.p.rapidapi.com';
-    private apiKey = '739fd41faemsh8f15381d5ddce83p12070fjsn3ed86a1e4644';
+    private apiKey = 'XXXX';
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         const modifiedReq = req.clone({ 
