@@ -22,6 +22,7 @@ export class SingleCryptoInfoComponent implements OnInit {
 
   public showDetails(): void {
     this.router.navigate(['crypto', `${this.cryptoInfo.cryptoCode}`]);
+    this.dataManagerService.setCurrentCrypto(this.cryptoInfo.cryptoCode);
     // this.dataManagerService.sendRequestForDetails(this.cryptoInfo.cryptoCode, this.dataManagerService.getBaseCurrency())
   }
 

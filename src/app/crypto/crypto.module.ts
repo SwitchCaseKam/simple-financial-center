@@ -1,10 +1,9 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { CryptoRoutingModule } from './crypto-routing.module';
 import { CryptoComponent } from './crypto.component';
-import { HeaderComponent } from './components/header/header.component';
 import { SingleCryptoInfoComponent } from './components/single-crypto-info/single-crypto-info.component';
 import { DataApiService } from './services/api/data-api.service';
 import { DataManagerService } from './services/data-manager/data-manager.service';
@@ -21,11 +20,11 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { DetailsModule } from './details/details.module';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { DataSeriesResolver } from './services/resolvers/data-series.resolver';
+import { AuthHttpInterceptor } from '../interceptors/auth-http.interceptor';
 
 @NgModule({
   declarations: [
     CryptoComponent,
-    HeaderComponent,
     SingleCryptoInfoComponent,
   ],
   imports: [
@@ -43,6 +42,8 @@ import { DataSeriesResolver } from './services/resolvers/data-series.resolver';
     MatButtonModule,
     MatSnackBarModule
   ],
-  providers: [DataSeriesResolver]
+  providers: [DataSeriesResolver, 
+    // { provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true },
+  ]
 })
 export class CryptoModule { }

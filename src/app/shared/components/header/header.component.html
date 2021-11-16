@@ -1,0 +1,25 @@
+<div>
+    <h2 class="mat-display-1">
+        <b>simple {{title}}</b>
+        <br>
+        a place where money happens/will happen
+    </h2>  
+    <h5 class="mat-small">project in progress</h5>
+    <div class='navigation-buttons'>
+        <button mat-button color="primary" class="button-section" routerLink="">
+            <img src="https://img.icons8.com/material-outlined/24/000000/home--v2.png"/>
+        </button>
+        <button mat-button color="primary" class="button-section" routerLink="/crypto">Crypto</button>
+        <button mat-button color="primary" class="button-section" routerLink="/fiat">Fiat</button>
+    </div>
+    <div class='base-currency-select'>
+        <form [formGroup]="fiatsForm">
+            base : 
+            <mat-form-field>
+                <mat-select formControlName="base">
+                    <mat-option *ngFor="let currency of fiatSymobols" [value]="currency">{{currency}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </form>
+    </div>
+</div>

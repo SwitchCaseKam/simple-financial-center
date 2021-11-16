@@ -1,0 +1,9 @@
+<div class='container'>
+    <div fxLayout="row wrap" fxLayoutAlign="space-around center" fxLayoutGap="10px grid">
+        <div class='element-center2' fxFlex="20%" fxFlex.xs="100%" fxFlex.sm="20%" *ngFor="let currency of fiatCurrencyData">
+            <app-single-fiat-info  [fiatInfo]="currency"></app-single-fiat-info>
+        </div>        
+    </div>
+</div>
+
+<router-outlet></router-outlet>

@@ -13,6 +13,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class DataManagerService {
 
   private baseCurrency: string = '';
+  private currentCrypto: string = '';
   
   private currentExchangeRates: CryptoCurrentExchangeRateData[] = [];
   private currentExchangeRatesSubject: Subject<CryptoCurrentExchangeRateData[]> = new Subject();
@@ -82,6 +83,9 @@ export class DataManagerService {
     this.baseCurrency = currency;
   }
 
+  public setCurrentCrypto(cryptoCode: string): void {
+    this.currentCrypto = cryptoCode;
+  }
 
   public getCurrentExchangeRates(): Observable<CryptoCurrentExchangeRateData[]> {
     return this.currentExchangeRatesSubject;
@@ -97,6 +101,10 @@ export class DataManagerService {
 
   public getBaseCurrency(): string {
     return this.baseCurrency;
+  }
+
+  public getCurrentCrypto(): string {
+    return this.currentCrypto;
   }
 
   private parseIntradayExchangeData(intradayData: IntradayExchangeRates): void {

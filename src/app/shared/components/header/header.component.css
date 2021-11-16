@@ -1,0 +1,20 @@
+.element-right {
+    flex: 1 1 auto;
+    text-align: right;
+}
+
+.button-section {
+    border: 1px solid black;
+}
+
+.mat-display-1 {
+    margin-bottom: 1rem;
+}
+
+.navigation-buttons {
+    float:left
+}
+
+.base-currency-select {
+    text-align: right;
+}

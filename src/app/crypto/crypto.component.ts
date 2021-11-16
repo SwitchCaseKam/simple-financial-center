@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { BaseCurrencyService } from '../shared/services/base-currency.service';
 import { DataManagerService } from './services/data-manager/data-manager.service';
 import { CryptoCurrentExchangeRateData } from './services/models/exchange-rates.model';
 
@@ -13,23 +14,29 @@ export class CryptoComponent implements OnInit, OnDestroy {
 
   public cryptosData: CryptoCurrentExchangeRateData[] = [];
   private cryptoDataSubscription: Subscription = new Subscription();
+  private baseCurrencySubscription: Subscription = new Subscription();
 
-  constructor(private dataCacheManager: DataManagerService) {}
+  constructor(
+    private dataManager: DataManagerService,
+    private baseCurrencyService: BaseCurrencyService
+  ) {}
 
   public ngOnInit(): void {
-    console.log('CRYPTO COMPONENT ON INIT')
-    this.dataCacheManager.sendRequestForData();
-    this.cryptoDataSubscription = this.dataCacheManager.getCurrentExchangeRates().subscribe(
+    this.baseCurrencySubscription = this.baseCurrencyService.getBaseCurrency().subscribe(
+      (baseCurrency: string) => this.dataManager.sendRequestForData(baseCurrency)
+    );
+
+    this.cryptoDataSubscription = this.dataManager.getCurrentExchangeRates().subscribe(
       (cryptosData: CryptoCurrentExchangeRateData[]) => {
-        console.log(cryptosData);
         this.cryptosData = cryptosData;
       }
     )
   }
 
   public ngOnDestroy(): void {
-    console.log('CRYPTO COMPONENT ON DESTROY');
+    console.log('crypto on destroy')
     this.cryptoDataSubscription.unsubscribe();
+    this.baseCurrencySubscription.unsubscribe();
   }
 
 }
