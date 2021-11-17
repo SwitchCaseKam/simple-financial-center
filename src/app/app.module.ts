@@ -8,7 +8,6 @@ import { AppComponent } from './app.component';
 
 import { AuthHttpInterceptor } from './interceptors/auth-http.interceptor';
 import { SharedModule } from './shared/shared.module';
-import { CryptoModule } from './crypto/crypto.module';
 import { HomeComponent } from './home/home.component';
 
 @NgModule({
@@ -22,7 +21,6 @@ import { HomeComponent } from './home/home.component';
     AppRoutingModule,
     HttpClientModule,
     SharedModule,
-    CryptoModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true }

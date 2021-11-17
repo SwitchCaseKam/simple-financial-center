@@ -24,7 +24,9 @@ export class DataManagerService {
   private dailyExchangeRates: CryptoDailyExchangeRateData = new CryptoDailyExchangeRateData();
   private dailyExchangeRatesSubject: Subject<CryptoDailyExchangeRateData> = new Subject();
 
-  constructor(private dataApiService: DataApiService, private snackBar: MatSnackBar) {
+  constructor(private dataApiService: DataApiService, 
+    // private snackBar: MatSnackBar
+    ) {
   }
 
   public sendRequestForData(baseCurrency: string = 'USD'): void {
@@ -56,15 +58,15 @@ export class DataManagerService {
   }
 
   private displayErrorInfo(error: HttpErrorResponse) {
-    if (error.status === 429) {
-      this.snackBar.open(`Error: Too many requests in 1 minute. 
-        Due to limited subscription plan of cryptocurrency REST API,
-        there is available only 5 request per minute. Sorry for inconvenience.`, undefined, {
-        duration: 10000
-      });
-      return;
-    }
-    this.snackBar.open(`Error: Unknown error.`, undefined, { duration: 10000 });
+    // if (error.status === 429) {
+    //   this.snackBar.open(`Error: Too many requests in 1 minute. 
+    //     Due to limited subscription plan of cryptocurrency REST API,
+    //     there is available only 5 request per minute. Sorry for inconvenience.`, undefined, {
+    //     duration: 10000
+    //   });
+    //   return;
+    // }
+    // this.snackBar.open(`Error: Unknown error.`, undefined, { duration: 10000 });
   }
 
   public sendRequestForDetails(cryptoCode: string, baseCurrency: string): void {

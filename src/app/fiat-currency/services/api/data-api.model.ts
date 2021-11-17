@@ -13,11 +13,19 @@ export enum apiOptions {
 interface QueryDetails {
     apiKey: string,
     timestamp: number;
-    base_currency: string
+    base_currency: string;
+    date_from?: string;
+    date_to?: string;
 }
 
 // Latest
-export interface CurrencyRates {
+export interface LatestCurrencyRates {
     query: QueryDetails,
     data: Map<string, number>
+}
+
+// Historical
+export interface HistoricalCurrencyRates {
+    query: QueryDetails,
+    data: Map<string, Map<string, number>>
 }

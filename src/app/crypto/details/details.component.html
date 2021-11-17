@@ -1,9 +1,0 @@
-<div *ngIf="dailyData.dates.length > 1">
-    <app-chart [cryptoIndicatorValues]="[dailyData.highs, dailyData.lows]" [dates]="dailyData.dates" title="Prices daily" type="scatter"></app-chart>
-    <br>
-    <app-chart [cryptoIndicatorValues]="[dailyData.volumes]" [dates]="dailyData.dates" title="Volumes daily" type="bar"></app-chart>
-    <br>
-    <app-chart [cryptoIndicatorValues]="[intradayData.highs, intradayData.lows]" [dates]="intradayData.dates" title="Prices today" type="scatter"></app-chart>
-    <br>
-    <app-chart [cryptoIndicatorValues]="[intradayData.volumes]" [dates]="intradayData.dates" title="Volumes today" type="bar"></app-chart>
-</div>

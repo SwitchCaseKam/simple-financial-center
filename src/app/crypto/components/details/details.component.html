@@ -1,0 +1,9 @@
+<div *ngIf="dailyData.dates.length > 1">
+    <app-chart [values]="[dailyData.highs, dailyData.lows]" [dates]="dailyData.dates" [name]="['highs', 'lows']" title="Prices daily" type="scatter"></app-chart>
+    <br>
+    <app-chart [values]="[dailyData.volumes]" [dates]="dailyData.dates" title="Volumes daily" type="bar"></app-chart>
+    <br>
+    <app-chart [values]="[intradayData.highs, intradayData.lows]" [dates]="intradayData.dates" title="Prices today" type="scatter"></app-chart>
+    <br>
+    <app-chart [values]="[intradayData.volumes]" [dates]="intradayData.dates" title="Volumes today" type="bar"></app-chart>
+</div>

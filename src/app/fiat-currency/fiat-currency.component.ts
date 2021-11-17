@@ -21,7 +21,11 @@ export class FiatCurrencyComponent implements OnInit {
 
   public ngOnInit(): void {
     this.baseCurrencyService.getBaseCurrency().subscribe(
-      (baseCurrency: string) => this.dataManagerService.getLatestCurrencyData(baseCurrency)
+      (baseCurrency: string) => 
+      {
+        this.dataManagerService.getLatestCurrencyData(baseCurrency);
+        this.dataManagerService.getHistoricalCurrencyData(baseCurrency);
+      }
     );
     this.dataManagerService.getFiatCurrencyData().subscribe(
       currencyData => this.fiatCurrencyData = currencyData

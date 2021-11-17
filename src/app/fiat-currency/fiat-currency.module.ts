@@ -7,17 +7,19 @@ import { SingleFiatInfoComponent } from './components/single-fiat-info/single-fi
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { DetailsModule } from '../crypto/details/details.module';
 import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { DetailsComponent } from './components/details/details.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
   declarations: [
     FiatCurrencyComponent,
     SingleFiatInfoComponent,
+    DetailsComponent,
   ],
   imports: [
     CommonModule,
@@ -25,11 +27,11 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatCardModule,
     MatDividerModule,
     FlexLayoutModule,
-    DetailsModule,
     MatButtonModule,
     MatSelectModule,
     MatToolbarModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ]
 })
 export class FiatCurrencyModule { }
