@@ -18,7 +18,7 @@ export class DataApiService {
       `${this.apiUrl}${apiFunctions.LATEST}?${apiOptions.API_KEY}=${this.apiKey}&${apiOptions.BASE_CURERNCY}=${baseCurrency}`);
   }
 
-  public getHistoricalCurrencyData(baseCurrency: string = 'USD', dateFrom: string = new Date(Date.now()-7*60*60*24*1000).toISOString().split('T')[0], dateTo: string = new Date().toISOString().split('T')[0]): Observable<HistoricalCurrencyRates> {
+  public getHistoricalCurrencyData(baseCurrency: string = 'USD', dateFrom: string = new Date(Date.now()-30*60*60*24*1000).toISOString().split('T')[0], dateTo: string = new Date().toISOString().split('T')[0]): Observable<HistoricalCurrencyRates> {
     return this.http.get<HistoricalCurrencyRates>(
       `${this.apiUrl}${apiFunctions.HISTORICAL}?${apiOptions.API_KEY}=${this.apiKey}&${apiOptions.BASE_CURERNCY}=${baseCurrency}&${apiOptions.DATE_FROM}=${dateFrom}&${apiOptions.DATE_TO}=${dateTo}`);
   }

@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { DataManagerService } from '../../services/data-manager/data-manager.service';
 import { FiatCurrencyData } from '../../services/models/fiat-currency.model';
 
 @Component({
@@ -11,14 +12,14 @@ export class SingleFiatInfoComponent implements OnInit {
 
   @Input() public fiatInfo: FiatCurrencyData = new FiatCurrencyData();
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private dataManagerService: DataManagerService) { }
 
   public ngOnInit(): void {
   }
 
   public showDetails(): void {
     this.router.navigate(['fiat', `${this.fiatInfo.symbol}`]);
-    // this.dataManagerService.setCurrentCrypto(this.cryptoInfo.cryptoCode);
+    this.dataManagerService.setCurrentCurrency(this.fiatInfo.symbol);
     // this.dataManagerService.sendRequestForDetails(this.cryptoInfo.cryptoCode, this.dataManagerService.getBaseCurrency())
   }
 

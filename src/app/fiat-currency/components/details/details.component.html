@@ -1,5 +1,10 @@
-<p>details will work soon<p>
-
-
-<app-chart title="Prices today" ></app-chart>
-
+<div *ngIf="historicalData.length > 0">
+    <app-chart 
+        [values]="[historicalData[0].values]"
+        [dates]="historicalData[0].dates"
+        [name]="['rate']"
+        title="Rates"
+        type="scatter"
+    ></app-chart>
+    <br>
+</div>

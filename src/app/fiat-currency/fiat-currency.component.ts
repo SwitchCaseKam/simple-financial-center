@@ -24,7 +24,7 @@ export class FiatCurrencyComponent implements OnInit {
       (baseCurrency: string) => 
       {
         this.dataManagerService.getLatestCurrencyData(baseCurrency);
-        this.dataManagerService.getHistoricalCurrencyData(baseCurrency);
+        // this.dataManagerService.getHistoricalCurrencyData(baseCurrency);
       }
     );
     this.dataManagerService.getFiatCurrencyData().subscribe(
