@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { AuthHttpInterceptor } from './interceptors/auth-http.interceptor';
 import { SharedModule } from './shared/shared.module';
 import { HomeComponent } from './home/home.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { HomeComponent } from './home/home.component';
     AppRoutingModule,
     HttpClientModule,
     SharedModule,
+    MatSnackBarModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true }

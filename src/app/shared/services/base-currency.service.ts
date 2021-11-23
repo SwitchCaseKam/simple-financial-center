@@ -17,8 +17,12 @@ export class BaseCurrencyService {
     this.baseCurrencySubject.next(this.baseCurrency);
   }
 
-  public getBaseCurrency(): Observable<string> {
+  public getBaseCurrencySubject(): Observable<string> {
     return this.baseCurrencySubject;
+  }
+
+  public getBaseCurrency(): string {
+    return this.baseCurrency;
   }
 
 

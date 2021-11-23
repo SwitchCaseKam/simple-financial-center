@@ -1,10 +1,21 @@
-<div *ngIf="historicalData.length > 0">
+<div *ngIf="historicalData.length > 0; else noData">
+    <div class="time-slot-buttons">
+        <ng-container *ngFor="let time of getTimeSlots()">
+            <button mat-button color="primary" class="button-section" (click)="getHistoricalData(getDaysNumberForSelectedTimeSlot(time))">{{time}}</button>
+        </ng-container>
+    </div>
+
     <app-chart 
         [values]="[historicalData[0].values]"
         [dates]="historicalData[0].dates"
         [name]="['rate']"
-        title="Rates"
+        title="{{ratesCurrenciesPair}}"
         type="scatter"
     ></app-chart>
     <br>
 </div>
+
+<ng-template #noData>
+    <mat-spinner></mat-spinner>
+    Please wait ...
+</ng-template>

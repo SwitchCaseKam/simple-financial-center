@@ -28,7 +28,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
   }
 
   public ngOnInit(): void {
-    this.detailsSubscription = this.baseCurrencyService.getBaseCurrency().pipe(
+    this.detailsSubscription = this.baseCurrencyService.getBaseCurrencySubject().pipe(
       tap((baseCurrency: string) => this.dataManagerService.sendRequestForDetails(this.dataManagerService.getCurrentCrypto(), baseCurrency)),
       switchMap(() => zip(
         this.dataManagerService.getIntradayExchangeRates(),

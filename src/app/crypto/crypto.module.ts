@@ -12,7 +12,6 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { DataSeriesResolver } from './services/resolvers/data-series.resolver';
 import { SharedModule } from '../shared/shared.module';
 import { DetailsComponent } from './components/details/details.component';
@@ -36,7 +35,6 @@ import { DetailsComponent } from './components/details/details.component';
     MatDividerModule,
     FlexLayoutModule,
     MatButtonModule,
-    MatSnackBarModule,
     SharedModule
   ],
   providers: [DataSeriesResolver, 

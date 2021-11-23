@@ -13,7 +13,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { DetailsComponent } from './components/details/details.component';
 import { SharedModule } from '../shared/shared.module';
-
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -31,6 +31,7 @@ import { SharedModule } from '../shared/shared.module';
     MatSelectModule,
     MatToolbarModule,
     ReactiveFormsModule,
+    MatProgressSpinnerModule,
     SharedModule
   ]
 })

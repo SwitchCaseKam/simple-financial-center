@@ -42,8 +42,8 @@ export class DataManagerService {
     );
   }
 
-  public getHistoricalCurrencyData(baseCurrency: string = 'USD'): void {
-    this.dataApiService.getHistoricalCurrencyData(baseCurrency).subscribe(
+  public getHistoricalCurrencyData(baseCurrency: string = 'USD', timeSlotDays: number = 180): void {
+    this.dataApiService.getHistoricalCurrencyData(baseCurrency, timeSlotDays).subscribe(
       (historicalCurrencyData: HistoricalCurrencyRates) => {
         this.fiatCurencyHistoricalData = [];
         Object.entries(historicalCurrencyData.data).forEach((date) => {

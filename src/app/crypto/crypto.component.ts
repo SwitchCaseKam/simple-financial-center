@@ -22,7 +22,7 @@ export class CryptoComponent implements OnInit, OnDestroy {
   ) {}
 
   public ngOnInit(): void {
-    this.baseCurrencySubscription = this.baseCurrencyService.getBaseCurrency().subscribe(
+    this.baseCurrencySubscription = this.baseCurrencyService.getBaseCurrencySubject().subscribe(
       (baseCurrency: string) => this.dataManager.sendRequestForData(baseCurrency)
     );
 
