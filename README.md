@@ -2,8 +2,13 @@
 
 ---
 
-Simple application to monitor financial market. Application retrieve data from https://www.alphavantage.co/.
-Currently, due to limited free requests to REST API, allows analysis cryptocurrencies (BTC, ETH), but in the future will support other financial markets (not only crypto).
+Simple application to monitor financial/forex market.
+Application retrieve data from:
+- https://www.alphavantage.co/ for **cryptocurrencies**
+- https://freecurrencyapi.net/ for **fiat currencies**
+
+Important:
+Currently, due to limited free requests to https://www.alphavantage.co/ REST API, application allows analysis two cryptocurrencies (BTC, ETH), but in the future will support other cryptocurrencies and other financial and stock markets.
 
 ---
 # Deployment
