@@ -15,8 +15,8 @@ export class DataManagerService {
   private baseCurrency: string = '';
   private currentCrypto: string = '';
   
-  private currentExchangeRates: CryptoCurrentExchangeRateData[] = [];
-  private currentExchangeRatesSubject: Subject<CryptoCurrentExchangeRateData[]> = new Subject();
+  private currentExchangeRates: Map<string, CryptoCurrentExchangeRateData> = new Map();
+  private currentExchangeRatesSubject: Subject<Map<string, CryptoCurrentExchangeRateData>> = new Subject();
 
   private intradayExchangeRates: CryptoIntradayExchangeRateData = new CryptoIntradayExchangeRateData();
   private intradayExchangeRatesSubject: Subject<CryptoIntradayExchangeRateData> = new Subject();
@@ -26,26 +26,26 @@ export class DataManagerService {
 
   constructor(private dataApiService: DataApiService, private snackBar: MatSnackBar) {}
 
-  public sendRequestForData(baseCurrency: string = 'USD'): void {
-    this.dataApiService.getCurrentExchangeRates(baseCurrency).pipe(
+  public sendRequestForData(cryptoCodeA: string, baseCurrency: string = 'USD'): void {
+    this.dataApiService.getCurrentExchangeRates(cryptoCodeA, baseCurrency).pipe(
       filter(rate => !!rate),
       take(1)
     ).subscribe(
-      (currentExchangeRate: CurrentExchangeRate[]) => {
-        this.currentExchangeRates = [];
-        currentExchangeRate.forEach(rate => {     
-          if (rate['Realtime Currency Exchange Rate']) {
-            this.currentExchangeRates.push({
+      (rate: CurrentExchangeRate) => {
+        if (rate['Realtime Currency Exchange Rate']) {
+            this.currentExchangeRates.set(cryptoCodeA, {
               cryptoCode: rate['Realtime Currency Exchange Rate']['1. From_Currency Code'],
               cryptoName: rate['Realtime Currency Exchange Rate']['2. From_Currency Name'],
               fiatCode: rate['Realtime Currency Exchange Rate']['3. To_Currency Code'],
               exchangeRate: rate['Realtime Currency Exchange Rate']['5. Exchange Rate'].slice(0, -4),
               bidPrice: rate['Realtime Currency Exchange Rate']['8. Bid Price'].slice(0, -4),
               askPrice: rate['Realtime Currency Exchange Rate']['9. Ask Price'].slice(0, -4),
-              time: rate['Realtime Currency Exchange Rate']['6. Last Refreshed'] + ' ' + rate['Realtime Currency Exchange Rate']['7. Time Zone'],
-            });
-          }
-        });
+              time: rate['Realtime Currency Exchange Rate']['6. Last Refreshed'] 
+                + ' ' + rate['Realtime Currency Exchange Rate']['7. Time Zone'],
+            }
+          );
+        }
+
         this.currentExchangeRatesSubject.next(this.currentExchangeRates);
       },
       (error: HttpErrorResponse) => {
@@ -86,7 +86,7 @@ export class DataManagerService {
     this.currentCrypto = cryptoCode;
   }
 
-  public getCurrentExchangeRates(): Observable<CryptoCurrentExchangeRateData[]> {
+  public getCurrentExchangeRates(): Observable<Map<string, CryptoCurrentExchangeRateData>> {
     return this.currentExchangeRatesSubject;
   }
 

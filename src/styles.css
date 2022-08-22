@@ -2,7 +2,8 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
 
-.element-center {
-    flex: 1 1 auto;
-    text-align: center;
+html {
+    font-family: "Lucida Console", "Courier New", monospace;
+    background-color: rgb(44, 0, 30);
+    color: white;
 }

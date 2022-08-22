@@ -1,12 +1,17 @@
-mat-grid-tile {
-    background: lightblue;
-  }
+.crypto-container {
+  display: flex;
+  justify-content: space-between;
+}
 
+.crypto-container__single-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-  .element-center2 {
-      text-align: center;
-    /* margin: auto;
-    width: 50%; */
-    /* display: flex;
-    justify-content: center; */
+@media (max-width: 800px) {
+  .crypto-container {
+    flex-direction: column;
+    align-items: center;
   }
+}

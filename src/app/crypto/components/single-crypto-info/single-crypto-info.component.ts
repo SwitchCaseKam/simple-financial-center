@@ -10,7 +10,10 @@ import { CryptoCurrentExchangeRateData } from '../../services/models/exchange-ra
 })
 export class SingleCryptoInfoComponent implements OnInit {
 
-  @Input() public cryptoInfo: CryptoCurrentExchangeRateData = new CryptoCurrentExchangeRateData();
+  @Input() public cryptoCode: string = '';
+  @Input() public baseCurrency: string = '';
+  public cryptoInfo: CryptoCurrentExchangeRateData = new CryptoCurrentExchangeRateData();
+  public errorMessage = '';
 
   constructor(
     private router: Router,
@@ -18,11 +21,18 @@ export class SingleCryptoInfoComponent implements OnInit {
   ) { }
 
   public ngOnInit(): void {
+    this.dataManagerService.sendRequestForData(this.cryptoCode, this.baseCurrency);
+    this.dataManagerService.getCurrentExchangeRates().subscribe(allCryptoData => {
+      this.errorMessage = '';
+      const cryptoData = allCryptoData.get(this.cryptoCode);
+      if(cryptoData) { this.cryptoInfo = cryptoData; }
+    });
   }
 
   public showDetails(): void {
     this.router.navigate(['crypto', `${this.cryptoInfo.cryptoCode}`]);
-    this.dataManagerService.setCurrentCrypto(this.cryptoInfo.cryptoCode);
+    // this.dataManagerService.setCurrentCrypto(this.cryptoInfo.cryptoCode);
+    // this.dataManagerService.sendRequestForData(this.name, this.baseCurrency);
     // this.dataManagerService.sendRequestForDetails(this.cryptoInfo.cryptoCode, this.dataManagerService.getBaseCurrency())
   }
 

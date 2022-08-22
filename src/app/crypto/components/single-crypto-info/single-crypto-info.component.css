@@ -1,7 +1,40 @@
 .crypto-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     background-color: #A5D8FF;
+    font-family: "Lucida Console", "Courier New", monospace;
+    border: 3px solid grey;
+    color: white;
+    background-color: rgb(94, 39, 80);
+    margin-bottom: 10px;
 }
 
 .crypto-info:hover {
     background-color: #3BC14A;
 }
+
+.crypto-info__title {
+    margin: 10px;
+}
+
+.crypto-info__subtitle {
+    margin: 5px;
+    font-weight: 500;
+    color: white
+}
+
+.crypto-info__divider {
+    background-color: white;
+}
+
+.crypto-info__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.crypto-info__img {
+    margin: 5px;
+}
+

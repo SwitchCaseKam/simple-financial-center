@@ -16,6 +16,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
   public intradayData: CryptoIntradayExchangeRateData = new CryptoIntradayExchangeRateData();
   public dailyData: CryptoDailyExchangeRateData = new CryptoDailyExchangeRateData();
   private detailsSubscription: Subscription = new Subscription();
+  private cryptoCode: string = '';
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -23,18 +24,18 @@ export class DetailsComponent implements OnInit, OnDestroy {
     private baseCurrencyService: BaseCurrencyService
   ) {
     this.activatedRoute.params.subscribe(
-      data => {console.log(data);}
+      data => { this.cryptoCode = data.cryptoCode;}
     );
   }
 
   public ngOnInit(): void {
-    this.detailsSubscription = this.baseCurrencyService.getBaseCurrencySubject().pipe(
-      tap((baseCurrency: string) => this.dataManagerService.sendRequestForDetails(this.dataManagerService.getCurrentCrypto(), baseCurrency)),
-      switchMap(() => zip(
+    this.dataManagerService.sendRequestForDetails(this.cryptoCode, 'USD');
+    this.detailsSubscription = zip(
         this.dataManagerService.getIntradayExchangeRates(),
-        this.dataManagerService.getDailyExchangeRates())),
+        this.dataManagerService.getDailyExchangeRates()
     ).subscribe(
       (cryptoData: [CryptoIntradayExchangeRateData, CryptoDailyExchangeRateData]) => {
+        console.log(cryptoData)
         this.intradayData = cryptoData[0];
         this.dailyData = cryptoData[1];
       }
