@@ -1,15 +1,21 @@
-<mat-card class="crypto-info" (click)="showDetails()">
-    <img class="crypto-info__img" src="assets/crypto-icons/{{cryptoInfo.cryptoCode}}.png">
-    <mat-card-subtitle class="crypto-info__subtitle">{{cryptoInfo.cryptoName}}</mat-card-subtitle>
-    <br>
-    <mat-card-title class="crypto-info__title">{{cryptoCode}}</mat-card-title>
-    <mat-card-content class="crypto-info__content">
-        <p><b>{{cryptoInfo.exchangeRate}} {{cryptoInfo.fiatCode}}</b></p>
-        <mat-divider class="crypto-info__divider" inset></mat-divider>
-        <p>bid: {{cryptoInfo.bidPrice}}</p>
-        <p>ask: {{cryptoInfo.askPrice}}</p>
-        <mat-divider class="crypto-info__divider" inset></mat-divider>
-        <p>Last update:<br>{{cryptoInfo.time}}</p>  
-    </mat-card-content>
-</mat-card>
+<ng-container *ngIf="cryptoInfo.cryptoCode.length > 0">
+    <mat-card class="crypto-info" (click)="showDetails()">
+        <img class="crypto-info__img" src="assets/crypto-icons/{{cryptoInfo.cryptoCode}}.png">
+        <mat-card-subtitle class="crypto-info__subtitle">{{cryptoInfo.cryptoName}}</mat-card-subtitle>
+        <br>
+        <mat-card-title class="crypto-info__title">{{cryptoCode}}</mat-card-title>
+        <mat-card-content class="crypto-info__content">
+            <p><b>{{cryptoInfo.exchangeRate}} {{cryptoInfo.fiatCode}}</b></p>
+            <mat-divider class="crypto-info__divider" inset></mat-divider>
+            <p>bid: {{cryptoInfo.bidPrice}}</p>
+            <p>ask: {{cryptoInfo.askPrice}}</p>
+            <mat-divider class="crypto-info__divider" inset></mat-divider>
+            <p>Last update:<br>{{cryptoInfo.time}}</p>  
+        </mat-card-content>
+    </mat-card>
+</ng-container>
+
+<ng-container  *ngIf="cryptoInfo.cryptoCode.length === 0">
+    <app-spinner></app-spinner>
+</ng-container>
 

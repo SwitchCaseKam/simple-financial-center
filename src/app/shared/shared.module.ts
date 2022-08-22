@@ -10,13 +10,15 @@ import * as PlotlyJS from 'plotly.js-dist-min';
 import { PlotlyModule } from 'angular-plotly.js';
 import { HeaderComponent } from './components/header/header.component';
 import { ChartComponent } from './components/chart/chart.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 PlotlyModule.plotlyjs = PlotlyJS;
 
 @NgModule({
   declarations: [
     HeaderComponent,
-    ChartComponent
+    ChartComponent,
+    SpinnerComponent
   ],
   imports: [
     CommonModule, 
@@ -30,7 +32,8 @@ PlotlyModule.plotlyjs = PlotlyJS;
   ],
   exports: [
     HeaderComponent,
-    ChartComponent
+    ChartComponent,
+    SpinnerComponent
   ]
 })
 export class SharedModule { }

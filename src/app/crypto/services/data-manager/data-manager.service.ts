@@ -29,7 +29,13 @@ export class DataManagerService {
   public sendRequestForData(cryptoCodeA: string, baseCurrency: string = 'USD'): void {
     this.dataApiService.getCurrentExchangeRates(cryptoCodeA, baseCurrency).pipe(
       filter(rate => !!rate),
-      take(1)
+      take(1),
+      retryWhen(errors => errors.pipe(
+        switchMap((error) => {
+            return of(error);
+        }),
+        delay(60500)
+      )),
     ).subscribe(
       (rate: CurrentExchangeRate) => {
         if (rate['Realtime Currency Exchange Rate']) {
