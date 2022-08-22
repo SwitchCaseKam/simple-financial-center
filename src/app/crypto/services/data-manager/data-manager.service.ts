@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, of } from 'rxjs';
 import { DataApiService } from '../api/data-api.service';
-import { filter, take } from 'rxjs/operators';
+import { filter, take, retryWhen, switchMap, delay } from 'rxjs/operators';
 import { CryptoCurrentExchangeRateData, CryptoDailyExchangeRateData, CryptoIntradayExchangeRateData } from '../models/exchange-rates.model';
 import { CurrentExchangeRate, DailyExchangeRates, IntradayExchangeRates, IntradayTimeSeriesCrypto } from '../api/data-api.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -69,6 +69,12 @@ export class DataManagerService {
   public sendRequestForDetails(cryptoCode: string, baseCurrency: string): void {
     this.dataApiService.getDetailsExchangeRates(cryptoCode, baseCurrency).pipe(
       filter(detailsData => !!detailsData),
+      retryWhen(errors => errors.pipe(
+        switchMap((error) => {
+            return of(error);
+        }),
+        delay(60500)
+      )),
     ).subscribe((detailsData: [IntradayExchangeRates, DailyExchangeRates]) => {
       this.parseIntradayExchangeData(detailsData[0]);
       this.parseDailyExchangeData(detailsData[1]);

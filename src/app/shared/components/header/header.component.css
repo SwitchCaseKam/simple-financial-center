@@ -1,5 +1,12 @@
 .header {
     display: flex;
+    gap: 2em;
+    align-items: center;
+    cursor: pointer;
+}
+
+.header:hover {
+    transform: scale(1.01);
 }
 
 .crypto-info__main-img {

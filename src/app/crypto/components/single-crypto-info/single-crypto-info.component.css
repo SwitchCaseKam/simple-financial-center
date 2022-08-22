@@ -8,10 +8,12 @@
     color: white;
     background-color: rgb(94, 39, 80);
     margin-bottom: 10px;
+    cursor: pointer;
 }
 
 .crypto-info:hover {
     background-color: #3BC14A;
+    transform: scale(1.1);
 }
 
 .crypto-info__title {

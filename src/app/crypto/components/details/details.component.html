@@ -1,4 +1,4 @@
-<div *ngIf="dailyData.dates.length > 1">
+<div class="details-charts" *ngIf="dailyData.dates.length > 1 else noData">
     <app-chart [values]="[dailyData.highs, dailyData.lows]" [dates]="dailyData.dates" [name]="['highs', 'lows']" title="Prices daily" type="scatter"></app-chart>
     <br>
     <app-chart [values]="[dailyData.volumes]" [dates]="dailyData.dates" title="Volumes daily" type="bar"></app-chart>
@@ -7,3 +7,9 @@
     <br>
     <app-chart [values]="[intradayData.volumes]" [dates]="intradayData.dates" title="Volumes today" type="bar"></app-chart>
 </div>
+
+<ng-template #noData>
+    <div class="details-charts">
+        <div class="loader"></div>
+    </div>
+</ng-template>
